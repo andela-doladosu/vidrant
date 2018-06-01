@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 test_db
+vidrant
+.env.*
