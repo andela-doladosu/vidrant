@@ -9,27 +9,25 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
+
     /**
      * A Dusk test example.
      *
      * @return void
      */
-    public function testExample()
+    public function testLogin()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                ->assertSee('Laravel');
+        $user = factory(\App\User::class)->create();
 
-            $browser->clickLink('Register')
-                ->assertSee('Register');
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->visit('/login')
+                    ->assertSee('Login');
 
-            $browser->type('email', 'dara@me.com')
-                ->type('password', 'password22')
-                ->type('password_confirmation', 'password22')
-                ->type('name', 'the dara')
-                ->press('Register')
-                ->assertPathIs('/home')
-                ->assertSee('Dashboard');
+            $browser
+                ->type('email', $user->email)
+                ->type('password', 'secret')
+                ->press('Login')
+                ->assertPathIs('/home');
 
             $browser->press('#navbarDropdown')
                 ->assertSee('Logout')
