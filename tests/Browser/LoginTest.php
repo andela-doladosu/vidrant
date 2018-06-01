@@ -17,14 +17,12 @@ class LoginTest extends DuskTestCase
      */
     public function testLogin()
     {
-        $user = factory(\App\User::class)->create();
-
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) {
             $browser->visit('/login')
                     ->assertSee('Login');
 
             $browser
-                ->type('email', $user->email)
+                ->type('email', $this->testUser->email)
                 ->type('password', 'secret')
                 ->press('Login')
                 ->assertPathIs('/home');

@@ -11,6 +11,8 @@ abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    public $testUser;
+
     /**
      * Prepare for Dusk test execution.
      *
@@ -39,5 +41,11 @@ abstract class DuskTestCase extends BaseTestCase
                 ChromeOptions::CAPABILITY, $options
             )
         );
+    }
+
+    protected function setup()
+    {
+        parent::setup();
+        $this->testUser = factory(\App\User::class)->create();
     }
 }
