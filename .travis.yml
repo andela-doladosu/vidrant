@@ -9,6 +9,9 @@ dist: trusty
 addons:
    chrome: stable
 
+env:
+   - DB_CONNECTION = dusk
+
 install:
    - cp .env.dusk.local .env
    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
