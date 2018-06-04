@@ -34,9 +34,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a href="{{ route('questions.create') }}" id="add-question" class="nav-item">Add Question</a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -46,6 +43,10 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                            <li class="nav-item">
+                                <a href="{{ route('questions.create') }}" id="add-question" role="button" class="btn btn-success">Add Question</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
